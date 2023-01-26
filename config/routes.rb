@@ -5,5 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   #user_routes
   resources :users, only: [:create]
+  post '/login', to: 'auth#create'
+  get '/profile', to: 'users#profile'
 
 end
