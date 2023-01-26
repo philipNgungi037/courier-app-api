@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+
+    #need to skip the before_action authorized on the users controller for the create
+    skip_before_action :authorized, only: [:create]
+
     def create
         user = User.create(user_params)
         if user.valid?
@@ -9,6 +13,11 @@ class UsersController < ApplicationController
             render json: { error: 'failed to create user' }, status: :unprocessable_entity
         end
    end
+
+   #render the profile method
+    def profile
+        render json: user
+    end
 
    private
 
